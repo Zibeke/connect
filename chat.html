@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat | CCI South Africa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="chat-page page-shell">
+    <section class="chat-workspace" aria-label="Messages">
+      <aside class="chat-sidebar">
+        <div class="chat-sidebar-heading"><h1>Messages</h1><div class="chat-heading-actions"><a href="index.html" class="chat-home-action" hidden><i data-lucide="house" aria-hidden="true"></i><span>Home</span></a><button class="bare-icon-button" id="chat-home-reveal" type="button" aria-label="Show home link"><i data-lucide="square-pen"></i></button></div></div>
+        <label class="chat-search"><i data-lucide="search" aria-hidden="true"></i><input id="chat-user-search" type="search" placeholder="Search people or messages" autocomplete="off"></label>
+        <div class="chat-filter-tabs" role="tablist" aria-label="Message filters"><button class="chat-filter is-active" type="button" data-chat-filter="all">All</button><button class="chat-filter" type="button" data-chat-filter="unread">Unread <span>2</span></button></div>
+        <div class="chat-contact-list" id="chat-contact-list" aria-label="Recent conversations">
+          <button class="chat-contact is-selected" type="button" data-contact="lerato" data-name="Lerato Mokoena" data-status="online" data-unread="1">
+            <span class="chat-avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt=""></span><span class="chat-contact-copy"><span class="chat-contact-top"><strong>Lerato Mokoena</strong><time>10:42</time></span><span class="chat-contact-preview">I’ll share the updated brief shortly.</span></span><span class="unread-pill">1</span>
+          </button>
+          <button class="chat-contact" type="button" data-contact="thabo" data-name="Thabo Ndlovu" data-status="typing" data-unread="1">
+            <span class="chat-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt=""></span><span class="chat-contact-copy"><span class="chat-contact-top"><strong>Thabo Ndlovu</strong><time>09:18</time></span><span class="chat-contact-preview">Voice note · 0:18</span></span><span class="unread-pill">1</span>
+          </button>
+          <button class="chat-contact" type="button" data-contact="amanda" data-name="Amanda Jacobs" data-status="offline" data-unread="0">
+            <span class="chat-avatar"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt=""></span><span class="chat-contact-copy"><span class="chat-contact-top"><strong>Amanda Jacobs</strong><time>Yesterday</time></span><span class="chat-contact-preview">Thanks, this is exactly what we needed.</span></span>
+          </button>
+          <button class="chat-contact" type="button" data-contact="sizwe" data-name="Sizwe Dlamini" data-status="offline" data-unread="0">
+            <span class="chat-avatar"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt=""></span><span class="chat-contact-copy"><span class="chat-contact-top"><strong>Sizwe Dlamini</strong><time>Mon</time></span><span class="chat-contact-preview">Are you joining the project check-in?</span></span>
+          </button>
+          <button class="chat-contact" type="button" data-contact="nomsa" data-name="Nomsa Khumalo" data-status="online" data-unread="0">
+            <span class="chat-avatar"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt=""></span><span class="chat-contact-copy"><span class="chat-contact-top"><strong>Nomsa Khumalo</strong><time>Sep 24</time></span><span class="chat-contact-preview">Sent you a document</span></span>
+          </button>
+        </div>
+      </aside>
+
+      <section class="chat-conversation" id="chat-conversation" aria-label="Conversation with Lerato Mokoena">
+        <header class="conversation-header">
+          <button class="conversation-back bare-icon-button" type="button" aria-label="Back to conversations"><i data-lucide="arrow-left"></i></button>
+          <span class="chat-avatar conversation-avatar"><img id="conversation-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt=""></span>
+          <div class="conversation-person"><h2 id="conversation-name">Lerato Mokoena</h2><p id="conversation-status" class="presence is-online">Online</p></div>
+          <div class="conversation-actions"><button class="bare-icon-button" type="button" aria-label="Search conversation"><i data-lucide="search"></i></button><button class="bare-icon-button" type="button" aria-label="More options"><i data-lucide="ellipsis-vertical"></i></button></div>
+        </header>
+        <div class="message-history" id="message-history" role="log" aria-live="polite" aria-label="Message history">
+          <div class="chat-date-divider"><span>Today</span></div>
+          <div class="message-row received"><div class="message-bubble"><p>Morning! Have you had a chance to look at the campaign brief?</p><time>10:34</time></div></div>
+          <div class="message-row sent"><div class="message-bubble"><p>Yes, I’ve reviewed it. The direction looks strong.</p><time>10:37 <i data-lucide="check-check" aria-label="Read"></i></time></div></div>
+          <div class="message-row received"><div class="message-bubble"><p>Great. I’m updating the final section and will send it through in a few minutes.</p><time>10:42</time></div></div>
+        </div>
+        <form class="message-composer" id="message-composer">
+          <button class="bare-icon-button composer-attach" type="button" aria-label="Attach file"><i data-lucide="paperclip"></i></button>
+          <textarea id="message-input" rows="1" placeholder="Write a message" aria-label="Write a message"></textarea>
+          <button class="composer-send" type="submit" aria-label="Send message"><i data-lucide="send"></i></button>
+        </form>
+      </section>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

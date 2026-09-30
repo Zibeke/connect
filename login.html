@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3f5f8">
+  <title>Sign in | CCI South Africa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="login-page">
+    <section class="login-illustration" aria-label="CCI South Africa sign-in">
+    </section>
+
+    <section class="login-panel" aria-labelledby="sign-in-title">
+      <div class="login-panel-inner">
+        <a href="index.html" aria-label="CCI South Africa home">
+          <img
+            class="login-organization-logo"
+            src="https://aadcdn.msauthimages.net/c1c6b6c8-rqhemeuyazxi4kg7jojjjcpqa2vsduk5y3e-k2ayvae/logintenantbranding/0/bannerlogo?ts=638816294952477934"
+            alt="CCI Group"
+          >
+        </a>
+
+        <h2 id="sign-in-title">Sign in</h2>
+
+        <form class="login-form" novalidate>
+          <label for="login-email">Email</label>
+          <input
+            class="login-email"
+            id="login-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="name@outlook.com"
+            aria-describedby="login-email-help login-feedback"
+            required
+          >
+          <a
+            class="login-help-link"
+            id="login-email-help"
+            href="https://aka.ms/sspr"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Can’t access your account?</a>
+          <p class="login-notice" id="login-feedback" role="status" aria-live="polite" hidden></p>
+          <button class="login-next" type="submit">Next</button>
+        </form>
+
+        <p class="login-policy">
+          This system (hardware, software, networks, applications, communications, and data) is the property of the CCI Group and is for authorised use by employees and approved contractors only. Access is subject to CCI policies and forms part of the conditions of use. To the extent permitted by law, CCI may monitor, intercept, access, log, review, and record system activity, communications, and data across jurisdictions for security, compliance, investigations, misconduct management, and operations. Users have no expectation of privacy except where required by law. Personal information is processed in accordance with applicable laws and CCI policies for business, legal, regulatory, and employment or contractual purposes. Unauthorised use may result in disciplinary action (including termination), loss of access, civil claims, or referral to authorities. By proceeding, you confirm that you have read, understood, and agree to this notice, CCI policies, and applicable law.
+        </p>
+
+        <div class="login-options-wrap">
+          <button
+            class="login-options-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="login-options-details"
+          >
+            <img
+              src="https://aadcdn.msauth.net/shared/1.0/content/images/signin-options_3e3f6b73c3f310c31d2c4d131a8ab8c6.svg"
+              alt=""
+            >
+            <span>Sign-in options</span>
+          </button>
+          <p class="login-options-details" id="login-options-details" hidden>
+            Outlook sign-in options will be available when OAuth is connected.
+          </p>
+        </div>
+
+        <p class="login-page-footer">CCI Group · Secure access for employees and approved contractors</p>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
