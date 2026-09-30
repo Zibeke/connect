@@ -16,8 +16,16 @@ const mobileNavigationBreakpoint = 1120;
 
 window.lucide?.createIcons();
 
+if (
+  (window.location.pathname.endsWith('/index.html') || window.location.pathname.endsWith('/')) &&
+  sessionStorage.getItem('cci.demo.signed-in') === 'true'
+) {
+  window.location.replace('home.html');
+}
+
 const loginForm = document.querySelector('.login-form');
 const loginEmail = document.querySelector('#login-email');
+const loginPassword = document.querySelector('#login-password');
 const loginFeedback = document.querySelector('#login-feedback');
 const loginOptionsButton = document.querySelector('.login-options-button');
 const loginOptionsDetails = document.querySelector('#login-options-details');
@@ -30,10 +38,34 @@ loginForm?.addEventListener('submit', (event) => {
     return;
   }
 
+  if (!loginPassword?.value) {
+    loginPassword?.reportValidity();
+    return;
+  }
+
+  const credentialsMatch =
+    loginEmail.value.trim().toLowerCase() === 'example@outlook.com' &&
+    loginPassword.value === 'Password123';
+
   if (loginFeedback) {
-    loginFeedback.textContent = 'Email accepted for preview.';
+    loginFeedback.textContent = credentialsMatch
+      ? 'Sign-in successful. Opening your home page…'
+      : 'The email or password is incorrect.';
+    loginFeedback.classList.toggle('is-error', !credentialsMatch);
     loginFeedback.hidden = false;
   }
+
+  if (credentialsMatch) {
+    sessionStorage.setItem('cci.demo.signed-in', 'true');
+    window.location.assign('home.html');
+  }
+});
+
+document.querySelectorAll('a[href="logout.html"]').forEach((logoutLink) => {
+  logoutLink.href = 'index.html';
+  logoutLink.addEventListener('click', () => {
+    sessionStorage.removeItem('cci.demo.signed-in');
+  });
 });
 
 loginOptionsButton?.addEventListener('click', () => {
@@ -857,23 +889,20 @@ if (chatPage) {
   const messageComposer = chatPage.querySelector('#message-composer');
   const messageInput = chatPage.querySelector('#message-input');
   const messagesByContact = {
-    lerato: [
+    simosenkosi: [
       { direction: 'received', text: 'Morning! Have you had a chance to look at the campaign brief?', time: '10:34' },
       { direction: 'sent', text: 'Yes, I’ve reviewed it. The direction looks strong.', time: '10:37' },
       { direction: 'received', text: 'Great. I’m updating the final section and will send it through in a few minutes.', time: '10:42' }
     ],
-    thabo: [
+    onwabe: [
       { direction: 'sent', text: 'Can you share the event photos when you have a moment?', time: '09:02' },
       { direction: 'received', text: 'Voice note · 0:18', time: '09:18' }
     ],
-    amanda: [
+    bandile: [
       { direction: 'received', text: 'The revised schedule is ready for review.', time: 'Yesterday' },
       { direction: 'sent', text: 'Thanks, this is exactly what we needed.', time: 'Yesterday' }
     ],
-    sizwe: [
-      { direction: 'sent', text: 'Are you joining the project check-in?', time: 'Monday' }
-    ],
-    nomsa: [
+    nosihle: [
       { direction: 'received', text: 'Sent you a document', time: 'Sep 24' }
     ]
   };
@@ -915,13 +944,16 @@ if (chatPage) {
     const contactId = contact.dataset.contact;
     const name = contact.dataset.name;
     const status = contact.dataset.status;
-    const previewImage = contact.querySelector('.chat-avatar img');
+    const contactAvatar = contact.querySelector('.chat-avatar');
 
     contacts.forEach((item) => item.classList.toggle('is-selected', item === contact));
 
     conversationName.textContent = name;
-    conversationAvatar.src = previewImage.src;
-    conversationAvatar.alt = '';
+    conversationAvatar.className = `${contactAvatar.className} conversation-avatar`;
+    conversationAvatar.replaceChildren(
+      ...[...contactAvatar.childNodes].map((node) => node.cloneNode(true))
+    );
+    conversationAvatar.setAttribute('aria-label', name);
     conversationStatus.className = 'presence';
 
     if (status === 'online') {
